@@ -1,6 +1,6 @@
 const WebSocket = require('ws');
 
-const ws = new WebSocket('ws://localhost:3000');
+const ws = new WebSocket('ws://44.225.155.76:3000');
 
 ws.on('open', function open() {
   ws.send('something');
