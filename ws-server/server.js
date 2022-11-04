@@ -18,7 +18,7 @@ const wss2 = new WebSocket.Server({ noServer: true });
 //for motive 3
 wss1.on("connection", function connection(ws) {
   ws.on("message", function incoming(message) {
-      var x = message.split("/\s+/");
+      var x = message.trim().split("\t");
 
     console.log(x);
     wss2.clients.forEach(function each(client) {
