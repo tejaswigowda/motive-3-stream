@@ -1,2 +1,2 @@
-forever stop watchFile2ws.js
+forever stopall
 forever start watchFile2ws.js
