@@ -3,7 +3,7 @@ const WebSocket = require('ws');
 const ws = new WebSocket('ws://44.225.155.76:3000/bvh_server');
 
 ws.on('open', function open() {
-  ws.send('something');
+ // ws.send('something');
 });
 
 ws.on('message', function message(data) {
