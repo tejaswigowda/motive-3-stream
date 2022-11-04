@@ -34,7 +34,7 @@ wss2.on("connection", function connection(ws) {
         ws.send(allContents);
 
     allContents = fs.readFileSync('public/mocapPlayer/stream/test.bvh', 'utf-8');
-    console.log(allContents);
+    //console.log(allContents);
     allContents.split(/\r?\n/).forEach((line) => {
         ws.send("\n" + line.replace(/    / /g, " "));
     });
