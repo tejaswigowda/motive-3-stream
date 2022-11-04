@@ -22,7 +22,7 @@ wss1.on("connection", function connection(ws) {
     //console.log(x);
     wss2.clients.forEach(function each(client) {
       if (client.readyState === WebSocket.OPEN) {
-        client.send(x);
+        client.send("\n"+x);
       }
     });
   });
