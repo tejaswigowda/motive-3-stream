@@ -18,7 +18,7 @@ const wss2 = new WebSocket.Server({ noServer: true });
 //for motive 3
 wss1.on("connection", function connection(ws) {
   ws.on("message", function incoming(message) {
-    //  console.log(message);
+    console.log(message);
     wss2.clients.forEach(function each(client) {
       if (client.readyState === WebSocket.OPEN) {
         client.send(message);
@@ -31,11 +31,13 @@ wss1.on("connection", function connection(ws) {
 wss2.on("connection", function connection(ws) {
     var allContents = fs.readFileSync('public/bvhheader.txt', 'utf-8');
         ws.send(allContents);
+    /*
     allContents = fs.readFileSync('public/mocapPlayer/stream/test.bvh', 'utf-8');
     console.log(allContents);
     allContents.split(/\r?\n/).forEach((line) => {
-        ws.send("\n" + line);
+        ws.send("\n" + line.replace(/    / /g, " "));
     });
+    */
   ws.on("message", function incoming(message) {
     // nothing here should be received
     console.log("received wss2: %s", message);
