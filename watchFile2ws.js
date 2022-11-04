@@ -14,7 +14,7 @@ const readline = require('readline')
 const TailFile = require('@logdna/tail-file')
 
 async function startTail() {
-  const tail = new TailFile('../Client-outputs.pts')
+  const tail = new TailFile('../Client-output.pts')
     .on('tail_error', (err) => {
       console.error('TailFile had an error!', err)
     })
