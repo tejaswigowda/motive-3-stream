@@ -179,12 +179,10 @@
 		}
 	
 		this.onDataChunckReceived = function(rawFrames) {
-            console.log("onDataChunckReceived", rawFrames);
 			var aa = [];
 	
 			for (f = 1; f < rawFrames.length; f++) {
 				var parts = rawFrames[f].trim().split(" ");
-                console.log("parts", parts);
 				for (var j = 0; j < parts.length; j++)
 					parts[j] = +parts[j];
 				aa.push(parts);
