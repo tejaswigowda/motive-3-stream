@@ -33,10 +33,10 @@ wss2.on("connection", function connection(ws) {
     var allContents = fs.readFileSync('public/bvhheader.txt', 'utf-8');
         ws.send(allContents);
 
-    allContents = fs.readFileSync('public/mocapPlayer/stream/test.bvh', 'utf-8');
+    allContents = fs.readFileSync('public/bvhframes.txt', 'utf-8');
     //console.log(allContents);
     allContents.split(/\r?\n/).forEach((line) => {
-       ws.send("\n" + line)
+       ws.send("\n" + line.trim().split("\t").join(" ");)
     });
 
   ws.on("message", function incoming(message) {
