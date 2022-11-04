@@ -41,7 +41,7 @@ wss2.on("connection", function connection(ws) {
 
   ws.on("message", function incoming(message) {
     // nothing here should be received
-    console.log("received wss2: %s", message);
+    //console.log("received wss2: %s", message);
   });
 });
 
