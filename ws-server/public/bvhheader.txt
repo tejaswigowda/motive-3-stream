@@ -1,3 +1,4 @@
+$HEADERS$
 HIERARCHY
 ROOT Hips
 {
