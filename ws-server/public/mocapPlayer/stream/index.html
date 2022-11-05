@@ -225,7 +225,7 @@ By Omid Alemi
 			scene = new THREE.Scene();
 			camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 10, 4000);
 			camera.position.set(0, 80, 0);
-			camera.position.z = 350;
+			camera.position.z = 1350;
 			scene.add(camera);
 
 			set_the_scene3();
@@ -280,8 +280,8 @@ By Omid Alemi
 						cy = c.jointMeshes[0].matrixWorld.elements[13];
 						cz = c.jointMeshes[0].matrixWorld.elements[14];
 
-						camera.position.set(cx, cy + 20, cz + 200);
-						camera.lookAt(cx, cy - 120, cz - 20);
+				//		camera.position.set(cx, cy + 20, cz + 200);
+				//		camera.lookAt(cx, cy - 120, cz - 20);
 					}
 					// console.log(c.animIndex);
 				}
