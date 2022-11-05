@@ -230,6 +230,7 @@
 				// $FRAMES$id#$
 	
 				var messageLines = event.data.split('\n');
+                console.log("messageLines", messageLines);
 	
 				// self.log("Received somthing!");
 				// self.log("The first line is : " + messageLines[0]);
