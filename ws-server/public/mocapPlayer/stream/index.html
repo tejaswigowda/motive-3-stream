@@ -26,8 +26,9 @@ By Omid Alemi
 	<script src="js/skeletonFactory.js"></script>
 </head>
 
-<body>
+<body onload='loadMocapStream()'>
 	<script type="text/javascript">
+        
         var bvhHeader;
         $.get("../../bvhheader.txt", function(data) {
             bvhHeader = data;
@@ -35,16 +36,19 @@ By Omid Alemi
 		var characters = [];
 		var playing = true;
 
+        function loadMocapStream() {
+            c2.loadFromStream("ws://44.225.155.76:3000/bvh_client", function() {
+                scene.add(c2.skeleton);
+            });
+        }
 
 		$(document).on("keypress", function(e) {
 			if (e.charCode == 32) // Space
 				playing = !playing;
 
+                    /*
 			if (e.charCode == 83) { // S
-		//		 c2.loadFromStream("ws://localhost:6869", function() {
-				c2.loadFromStream("ws://44.225.155.76:3000/bvh_client", function() {
-					scene.add(c2.skeleton);
-				});
+                        loadMocapStream();
 			}
 
 			if (e.charCode == 82) { // R
@@ -58,6 +62,7 @@ By Omid Alemi
 			if (e.charCode == 87) { // W
 				c2.requestFrames(3);
 			}
+       */
 
 			// characters.forEach(function (c){
 			// 	c.playing = playing;
