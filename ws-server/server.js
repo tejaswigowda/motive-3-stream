@@ -31,7 +31,7 @@ wss1.on("connection", function connection(ws) {
 //webbrowser websocket
 wss2.on("connection", function connection(ws) {
     var allContents = fs.readFileSync('public/bvhheader.txt', 'utf-8');
-        ws.send(allContents);
+        ws.send(allContents.replace(/\r?\n|\r/g, " "));
 
     allContents = fs.readFileSync('public/bvhframes.txt', 'utf-8');
     //console.log(allContents);
