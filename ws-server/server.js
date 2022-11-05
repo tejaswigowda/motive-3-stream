@@ -1,27 +1,25 @@
-const fs = require('fs');
+const fs = require("fs");
 
 const express = require("express");
 const app = express();
 const server = require("http").Server(app);
 const url = require("url");
 
-
-
 const WebSocket = require("ws");
 
-const port = 3000;//parseInt(process.argv.slice(2));
+const port = 3000; //parseInt(process.argv.slice(2));
 
 const wss1 = new WebSocket.Server({ noServer: true });
 const wss2 = new WebSocket.Server({ noServer: true });
 
-
 //for motive 3
 wss1.on("connection", function connection(ws) {
   ws.on("message", function incoming(message) {
-    //  console.log(message);
+    var x = message.trim().split("\t").join(" ");
+    //console.log(x);
     wss2.clients.forEach(function each(client) {
       if (client.readyState === WebSocket.OPEN) {
-        client.send(message);
+        client.send(" \n" + x);
       }
     });
   });
@@ -29,16 +27,17 @@ wss1.on("connection", function connection(ws) {
 
 //webbrowser websocket
 wss2.on("connection", function connection(ws) {
-    var allContents = fs.readFileSync('public/bvhheader.txt', 'utf-8');
-        ws.send(allContents);
-    allContents = fs.readFileSync('public/mocapPlayer/stream/SampleWalk.bvh', 'utf-8');
-    console.log(allContents);
-    allContents.split(/\r?\n/).forEach((line) => {
-        ws.send("\n" + line);
-    });
+  var allContents = fs.readFileSync("public/bvhheader.txt", "utf-8");
+  ws.send(allContents.replace(/\r?\n|\r/g, "\n"));
+
+  allContents = fs.readFileSync("public/bvhframes.txt", "utf-8");
+  allContents.split(/\r?\n/).forEach((line) => {
+    ws.send(" \n" + line.trim().split("\t").join(" "));
+  });
+
   ws.on("message", function incoming(message) {
     // nothing here should be received
-    console.log("received wss2: %s", message);
+    // console.log("received wss2: %s", message);
   });
 });
 

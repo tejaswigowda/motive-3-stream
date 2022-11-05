@@ -1,9 +1,9 @@
 const WebSocket = require('ws');
 
-const ws = new WebSocket('ws://localhost:3000');
+const ws = new WebSocket('ws://44.225.155.76:3000/bvh_server');
 
 ws.on('open', function open() {
-  ws.send('something');
+ // ws.send('something');
 });
 
 ws.on('message', function message(data) {
@@ -14,7 +14,7 @@ const readline = require('readline')
 const TailFile = require('@logdna/tail-file')
 
 async function startTail() {
-  const tail = new TailFile('../Client-outputs.pts')
+  const tail = new TailFile('../Client-output.pts')
     .on('tail_error', (err) => {
       console.error('TailFile had an error!', err)
     })
