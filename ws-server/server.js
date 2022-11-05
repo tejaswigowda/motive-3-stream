@@ -36,7 +36,7 @@ wss2.on("connection", function connection(ws) {
     allContents = fs.readFileSync('public/bvhframes.txt', 'utf-8');
     //console.log(allContents);
     allContents.split(/\r?\n/).forEach((line) => {
- //      ws.send(" \n" + line.trim().split("\t").join(" "))
+       ws.send(" \n" + line.trim().split("\t").join(" "))
     });
 
   ws.on("message", function incoming(message) {
