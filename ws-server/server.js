@@ -30,12 +30,10 @@ wss2.on("connection", function connection(ws) {
   var allContents = fs.readFileSync("public/bvhheader.txt", "utf-8");
   ws.send(allContents.replace(/\r?\n|\r/g, "\n"));
 
-    /*
   allContents = fs.readFileSync("public/bvhframes.txt", "utf-8");
   allContents.split(/\r?\n/).forEach((line) => {
     ws.send(" \n" + line.trim().split("\t").join(" "));
   });
-    */
 
   ws.on("message", function incoming(message) {
     // nothing here should be received
