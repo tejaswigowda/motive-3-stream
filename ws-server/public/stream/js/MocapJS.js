@@ -230,7 +230,11 @@
 				// $FRAMES$id#$
 	
 				var messageLines = event.data.split('\n');
+                try{
                 console.log(c2.bvh.frameArray.length);
+                }
+                catch(e){
+                }
                 console.log("messageLines", messageLines);
 	
 				// self.log("Received somthing!");
