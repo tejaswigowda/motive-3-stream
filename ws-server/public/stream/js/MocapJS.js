@@ -187,6 +187,7 @@
 					parts[j] = +parts[j];
 				aa.push(parts);
 			}
+            console.log("aa", aa);
 			diff = self.bvh.fillFrameArray(aa);
 			self.frameCount = self.bvh.frameArray.length;
 			
