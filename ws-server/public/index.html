@@ -25,7 +25,7 @@
 
       ws.onmessage = function (message) {
         document.getElementById("message").innerHTML = message.data;
-        //console.log(count++, new Date(), message.data.split("\t"));
+        console.log(new Date(), message.data.split("\t"));
       };
 
       // setInterval("location.reload()",1000*60);
