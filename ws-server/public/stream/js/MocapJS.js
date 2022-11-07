@@ -236,6 +236,7 @@
                 catch(e){
                 }
                 console.log("messageLines", messageLines);
+                console.log(messageLines);
 	
 				// self.log("Received somthing!");
 				// self.log("The first line is : " + messageLines[0]);
