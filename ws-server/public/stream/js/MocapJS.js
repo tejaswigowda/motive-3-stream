@@ -187,7 +187,7 @@
 					parts[j] = +parts[j];
 				aa.push(parts);
 			}
-            console.log("aa", aa);
+            //console.log("aa", aa);
 			diff = self.bvh.fillFrameArray(aa);
 			self.frameCount = self.bvh.frameArray.length;
 			
@@ -231,13 +231,7 @@
 				// $FRAMES$id#$
 	
 				var messageLines = event.data.split('\n');
-                try{
-                console.log(c2.bvh.frameArray.length);
-                }
-                catch(e){
-                }
-                console.log("messageLines", messageLines);
-                console.log(messageLines);
+                //console.log(messageLines);
 	
 				// self.log("Received somthing!");
 				// self.log("The first line is : " + messageLines[0]);

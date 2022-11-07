@@ -16,7 +16,7 @@ const wss2 = new WebSocket.Server({ noServer: true });
 wss1.on("connection", function connection(ws) {
   ws.on("message", function incoming(message) {
     var x = message.trim().split(" ").join(" ");
-    console.log(x);
+    //console.log(x);
     wss2.clients.forEach(function each(client) {
       if (client.readyState === WebSocket.OPEN) {
         client.send(" \n" + x);
