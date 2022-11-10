@@ -214,7 +214,7 @@
 			});
 
 			// var geometry = new THREE.PlaneGeometry(800, 800);
-			var geometry = new THREE.CubeGeometry(800, 800, 5);
+			var geometry = new THREE.CubeGeometry(900, 900, 2);
 
 			var mesh = new THREE.Mesh(geometry, material);
 			mesh.position.y = 55;
@@ -244,7 +244,7 @@
 
 			//c2 = new BVHCharacter("Mamali", jointmaterial, bonematerial, makeJointGeometry_Dode, makeBoneGeometry_Cylinder2);
 			c2 = new BVHCharacter("TheDude", jointmaterial, bonematerial3, makeJointGeometry_Dode, makeBoneGeometry_Cylinder2);
-			c2.skelScale = 2.1;
+			c2.skelScale = 1.8;
 			c2.setOriginPosition(0, 38, 0);
 
 			characters.push(c2);
