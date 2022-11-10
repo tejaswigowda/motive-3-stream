@@ -32,7 +32,7 @@
 		var playing = true;
 
         function loadMocapStream() {
-            c2.loadFromStream("ws://44.225.155.76:3000/bvh_client", function() {
+            c2.loadFromStream("ws://44.225.155.76:4000/bvh_client", function() {
                 scene.add(c2.skeleton);
             });
         }
@@ -163,7 +163,7 @@
 				map: texture
 			});
 
-			var geometry = new THREE.PlaneGeometry(5000, 5000);
+			var geometry = new THREE.PlaneGeometry(9000, 9000);
 
 			var mesh = new THREE.Mesh(geometry, material);
 			mesh.rotation.x = -Math.PI / 2;
@@ -224,9 +224,7 @@
 		function init() {
 			scene = new THREE.Scene();
 			camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 10, 4000);
-			camera.position.set(0, 80, 0);
-			camera.position.z = 950;
-			camera.position.y = 550;
+			camera.position.set(0, 550, 1300);
 			scene.add(camera);
 
 			set_the_scene3();

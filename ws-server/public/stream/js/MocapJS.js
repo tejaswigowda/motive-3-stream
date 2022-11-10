@@ -187,7 +187,6 @@
 					parts[j] = +parts[j];
 				aa.push(parts);
 			}
-            //console.log("aa", aa);
 			diff = self.bvh.fillFrameArray(aa);
 			self.frameCount = self.bvh.frameArray.length;
 			
@@ -231,7 +230,6 @@
 				// $FRAMES$id#$
 	
 				var messageLines = event.data.split('\n');
-                //console.log(messageLines);
 	
 				// self.log("Received somthing!");
 				// self.log("The first line is : " + messageLines[0]);
@@ -403,8 +401,8 @@
 			// }
 			
 			if (self.isStreaming) {
-				self.log('Cutting from Frame ' + frame);
-				console.log(self.frameCount);
+				//self.log('Cutting from Frame ' + frame);
+				//console.log(self.frameCount);
 				self.bvh.consumeFrames(frame);
 				self.frameCount = self.bvh.frameArray.length;
 				// console.log(self.frameCount);

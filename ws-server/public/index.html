@@ -18,8 +18,8 @@
         protocolStr + "://" + location.hostname + portStr + "/bvh_client"
       );
       if (window.location.hash.replace("#", "") == "debug") {
-        var ws = new WebSocket(
-          protocolStr + "://44.225.155.76" + portStr + "/bvh_client"
+        ws = new WebSocket(
+          protocolStr + "://44.225.155.76:4000/bvh_client"
         );
       }
 
