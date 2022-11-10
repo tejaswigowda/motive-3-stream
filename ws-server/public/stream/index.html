@@ -32,7 +32,8 @@
 		var playing = true;
 
         function loadMocapStream() {
-            c2.loadFromStream("ws://44.225.155.76:4000/bvh_client", function() {
+            c2.loadFromStream("ws://44.225.155.76:3000/bvh_client", function() {
+            //c2.loadFromStream("ws://44.225.155.76:4000/bvh_client", function() {
                 scene.add(c2.skeleton);
             });
         }
@@ -146,7 +147,7 @@
 			scene.add(light2);
 
 			var texture = THREE.ImageUtils.loadTexture(
-				'style/checker.png'
+				'dark.png'
 			);
 
 
@@ -158,7 +159,7 @@
 			var material = new THREE.MeshPhongMaterial({
 				color: 0xffffff,
 				specular: 0xffffff,
-				shininess: 10,
+				shininess: 1,
 				shading: THREE.FlatShading,
 				map: texture
 			});
@@ -180,7 +181,7 @@
 
 			var textureLoader = new THREE.TextureLoader();
 
-			var texture = textureLoader.load('style/hardwood2_diffuse.jpg', function(tt) {
+			var texture = textureLoader.load('dark.png', function(tt) {
 				// var texture = textureLoader.load('style/brick_diffuse.jpg', function(tt) {
 				console.log(tt);
 			});
@@ -212,11 +213,11 @@
 
 			});
 
-			// var geometry = new THREE.PlaneGeometry(400, 400);
-			var geometry = new THREE.CubeGeometry(400, 400, 5);
+			// var geometry = new THREE.PlaneGeometry(800, 800);
+			var geometry = new THREE.CubeGeometry(800, 800, 5);
 
 			var mesh = new THREE.Mesh(geometry, material);
-			mesh.position.y = -2;
+			mesh.position.y = 40;
 			mesh.rotation.x = -Math.PI / 2;
 			scene.add(mesh);
 		}
@@ -224,7 +225,7 @@
 		function init() {
 			scene = new THREE.Scene();
 			camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 10, 4000);
-			camera.position.set(0, 550, 1300);
+			camera.position.set(0, 550, 800);
 			scene.add(camera);
 
 			set_the_scene3();
@@ -233,16 +234,17 @@
 			//scene.add( axes );
 
 
+                    /*
                     c2 = new BVHCharacter("Walker",  // Give it a name. Usefull for debugging.
                     jointmaterial4,  // The material that the character uses for joints. Defined in the skeletonFactory.js
                     bonematerial5,  // The material that the character uses for bones. Defined in the skeletonFactory.js
                     makeJointGeometry_Sphere1, // Pointer to the function that creates the geometries for joints. Defined in the skeletonFactory.js
                     makeBoneGeometry_Cylinder2); // Pointer to the function that creates the geometries for bones. Defined in the skeletonFactory.js
-
+*/
 
 			//c2 = new BVHCharacter("Mamali", jointmaterial, bonematerial, makeJointGeometry_Dode, makeBoneGeometry_Cylinder2);
-			//c2 = new BVHCharacter("Gholi", jointmaterial, bonematerial, makeJointGeometry_Dode, makeBoneGeometry_Cylinder2);
-			c2.skelScale = 1.1;
+			c2 = new BVHCharacter("TheDude", jointmaterial, bonematerial3, makeJointGeometry_Dode, makeBoneGeometry_Cylinder2);
+			c2.skelScale = 2.1;
 			c2.setOriginPosition(0, 38, 0);
 
 			characters.push(c2);

@@ -8,11 +8,11 @@ jointmaterial =  new THREE.MeshLambertMaterial({
 	});
 
 bonematerial = new THREE.MeshPhongMaterial({
-		color: 0xbd9a6d,
+		color: 0x000000,
 		emissive: 0x271c18,
 		side: THREE.DoubleSide,
-		// shading: THREE.FlatShading,
-		wireframe: false
+		shading: THREE.FlatShading,
+		wireframe: true 
 	});
 
 jointmaterial2 = new THREE.MeshPhongMaterial({
@@ -33,7 +33,7 @@ bonematerial2 = new THREE.MeshPhongMaterial({
 	});
 
 bonematerial3 = new THREE.MeshPhongMaterial({
-		color: 0x176793,
+		color: 0xfa5000,
 		emissive: 0x000000,
 		specular: 0x111111,
 		shininess: 90,
@@ -134,7 +134,7 @@ var makeBoneGeometry_Cylinder1 = function (joint1Name, joint2Name, length, scale
 };
 
 var makeBoneGeometry_Cylinder2 = function (joint1Name, joint2Name, length, scale) {
-	return 	new THREE.CylinderGeometry(1.5/scale,0.2/scale,length,40);
+	return 	new THREE.CylinderGeometry(3.5/scale,1.2/scale,length,40);
 };
 
 var makeBoneGeometry_Cylinder3 = function (joint1Name, joint2Name, length, scale) {
