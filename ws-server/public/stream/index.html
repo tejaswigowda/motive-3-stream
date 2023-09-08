@@ -32,7 +32,7 @@
 		var playing = true;
 
         function loadMocapStream() {
-            c2.loadFromStream("ws://44.225.155.76:3000/bvh_client", function() {
+            c2.loadFromStream("ws://" + window.location.host + "/bvh_client", function() {
             //c2.loadFromStream("ws://44.225.155.76:4000/bvh_client", function() {
                 scene.add(c2.skeleton);
             });
