@@ -561,6 +561,13 @@ var data45
           value: 0xffffff,
         };
 
+        var wsurl = {
+          value: "ws://localhost:3000"
+        }
+
+        gui.add(wsurl, "value").name("WebSocket Server").onChange(function(){
+          startWebSocket(wsurl.value)
+        });
         gui
           .add(grid.material.uniforms.uSize1, "value", 2, 100)
           .step(1)
@@ -644,6 +651,9 @@ var data45
           });
           scene_bvh = new THREE.Scene();
           animate_bvh();
+          renderer.render(scene, camera);
+
+          /*
           const loader_bvh = new BVHLoader();
           console.log(inputFile);
           loader_bvh.load(inputFile || bvhfile, function (result) {
@@ -670,7 +680,9 @@ var data45
 
             animation.play();
           });
+          */
         });
+        
 
         renderer = new THREE.WebGLRenderer({ antialias: true });
         renderer.setPixelRatio(window.devicePixelRatio);
@@ -712,124 +724,21 @@ var data45
 
       var count = 0;
 
+      var message = "";
+
       function animate_bvh() {
         count++;
         requestAnimationFrame(animate_bvh);
 
         const delta = clock_bvh.getDelta();
-
-        if (mixer_bvh) {
-          mixer_bvh.update(delta);
-          $("#seek")
-            .val((animation.time / animationDuration) * 100)
-            .change();
-          if (mixer_bvh.time >= animationDuration) {
-            animation.paused = true;
-            animation.time = animationDuration;
-          }
-
-          if (count % 1 == 0) {
-            if(!animation.paused){
-                stats.update();
-            }
-            scene_bvh.traverse(function (child) {
-              // console.log(child);
-              child.name = transposeName(child.name);
-              if (child.type === "Bone") {
-                if (child.name === "LeftArm") {
-                  var q = child.quaternion;
-                  var bn = model.getObjectByName("mixamorigLeftArm");
-                  bn.quaternion.set(q.x, q.y, q.z, q.w);
-                } else if (child.name === "LeftForeArm") {
-                  var q = child.quaternion;
-                  var bn = model.getObjectByName("mixamorigLeftForeArm");
-                  bn.quaternion.set(q.x, q.y, q.z, q.w);
-                } else if (child.name === "LeftHand") {
-                  var q = child.quaternion;
-                  var bn = model.getObjectByName("mixamorigLeftHand");
-                  bn.quaternion.set(q.x, q.y, q.z, q.w);
-                } else if (child.name === "LeftUpLeg") {
-                  var q = child.quaternion;
-                  var bn = model.getObjectByName("mixamorigLeftUpLeg");
-                  bn.quaternion.set(q.x, q.y, q.z, q.w);
-                } else if (child.name === "LeftLeg") {
-                  var q = child.quaternion;
-                  var bn = model.getObjectByName("mixamorigLeftLeg");
-                  bn.quaternion.set(q.x, q.y, q.z, q.w);
-                } else if (child.name === "LeftFoot") {
-                  var q = child.quaternion;
-                  var bn = model.getObjectByName("mixamorigLeftFoot");
-                  bn.quaternion.set(q.x, q.y, q.z, q.w);
-                } else if (child.name === "LeftShoulder") {
-                  var q = child.quaternion;
-                  var bn = model.getObjectByName("mixamorigLeftShoulder");
-                  bn.quaternion.set(q.x, q.y, q.z, q.w);
-                } else if (child.name === "LeftToeBase") {
-                  var q = child.quaternion;
-                  var bn = model.getObjectByName("mixamorigLeftToeBase");
-                  bn.quaternion.set(q.x, q.y, q.z, q.w);
-                } else if (child.name === "RightForeArm") {
-                  var q = child.quaternion;
-                  var bn = model.getObjectByName("mixamorigRightForeArm");
-                  bn.quaternion.set(q.x, q.y, q.z, q.w);
-                } else if (child.name === "RightArm") {
-                  var q = child.quaternion;
-                  var bn = model.getObjectByName("mixamorigRightArm");
-                  bn.quaternion.set(q.x, q.y, q.z, q.w);
-                } else if (child.name === "RightHand") {
-                  var q = child.quaternion;
-                  var bn = model.getObjectByName("mixamorigRightHand");
-                  bn.quaternion.set(q.x, q.y, q.z, q.w);
-                } else if (child.name === "RightUpLeg") {
-                  var q = child.quaternion;
-                  var bn = model.getObjectByName("mixamorigRightUpLeg");
-                  bn.quaternion.set(q.x, q.y, q.z, q.w);
-                } else if (child.name === "RightLeg") {
-                  var q = child.quaternion;
-                  var bn = model.getObjectByName("mixamorigRightLeg");
-                  bn.quaternion.set(q.x, q.y, q.z, q.w);
-                } else if (child.name === "RightFoot") {
-                  var q = child.quaternion;
-                  var bn = model.getObjectByName("mixamorigRightFoot");
-                  bn.quaternion.set(q.x, q.y, q.z, q.w);
-                } else if (child.name === "RightShoulder") {
-                  var q = child.quaternion;
-                  var bn = model.getObjectByName("mixamorigRightShoulder");
-                  bn.quaternion.set(q.x, q.y, q.z, q.w);
-                } else if (child.name === "RightToeBase") {
-                  var q = child.quaternion;
-                  var bn = model.getObjectByName("mixamorigRightToeBase");
-                  bn.quaternion.set(q.x, q.y, q.z, q.w);
-                } else if (child.name === "Hips") {
-                  var q = child.quaternion;
-                  var p = child.position;
-                  var bn = model.getObjectByName("mixamorigHips");
-                  bn.quaternion.set(q.x, q.y, q.z, q.w);
-                  if (fbxfile == "ybot.fbx") {
-                    bn.position.set(p.x, p.y + 13, p.z);
-                  } else {
-                    bn.position.set(p.x, p.y + 20, p.z);
-                  }
-                } else if (child.name === "Head") {
-                  var q = child.quaternion;
-                  var bn = model.getObjectByName("mixamorigHead");
-                  bn.quaternion.set(q.x, q.y, q.z, q.w);
-                } else if (child.name === "Neck") {
-                  var q = child.quaternion;
-                  var bn = model.getObjectByName("mixamorigNeck");
-                  bn.quaternion.set(q.x, q.y, q.z, q.w);
-                } else if (child.name === "Spine") {
-                  var q = child.quaternion;
-                  var bn = model.getObjectByName("mixamorigSpine");
-                  bn.quaternion.set(q.x, q.y, q.z, q.w);
-                } else {
-                  // console.log(child);
-                }
-              }
-            });
-                renderer.render(scene, camera);
-          }
+         
+        if(millis != lastTick){
+          millis = lastTick;
+          stats.update();
         }
+                renderer.render(scene, camera);
+          
+        
       }
 
       function dothistoInit() {
@@ -899,43 +808,9 @@ var data45
       ><i class="material-icons">videocam</i></a
     >
 
-    <div
-      style="
-        position: fixed;
-        bottom: 0;
-        left: 100px;
-        width: calc(100vw - 200px);
-        height: 100px;
-        opacity: 1;
-        z-index: 1000;
-      "
-      id="seekbar"
-      onclick="toggleSeek(event)"
-    >
-      <input id="seek" type="range" min="0" max="100" value="0" step="1" />
-      <p
-        style="position: fixed; bottom: -5px; text-shadow:0px 0px 1px;width: calc(100vw - 200px); text-align: center"
-        id="statusText"
-      >Loading...</p>
-    </div>
+
   </script>
 
-  <input
-    type="url"
-    placeholder="ws://localhost:3000"
-    id="url"
-    value="ws://localhost:3000"
-    style="
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 40px;
-      text-align: center;
-      z-index: 1000;
-    "
-    onchange="startWebSocket()"
-  />
 
   </body>
   <link
@@ -949,17 +824,18 @@ var data45
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
 <script>
-  function startWebSocket()
+  function startWebSocket(url)
   {
-        ws = new WebSocket(
-          document.getElementById("url").value 
-        );
+        ws = new WebSocket(url);
       
 
       ws.onmessage = function (message) {
         //document.getElementById("message").innerHTML = message.data;
         console.log(new Date(), message.data);
+        millis++;
       };
   }
+  var millis = 0;
+  var lastTick = -1;
 </script>
   </html>
