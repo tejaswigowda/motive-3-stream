@@ -918,6 +918,25 @@ var data45
         id="statusText"
       >Loading...</p>
     </div>
+  </script>
+
+  <input
+    type="url"
+    placeholder="ws://localhost:3000"
+    id="url"
+    value="ws://localhost:3000"
+    style="
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 40px;
+      text-align: center;
+      z-index: 1000;
+    "
+    onchange="startWebSocket()"
+  />
+
   </body>
   <link
     href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -928,4 +947,19 @@ var data45
     href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
   />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-</html>
+
+<script>
+  function startWebSocket()
+  {
+        ws = new WebSocket(
+          document.getElementById("url").value 
+        );
+      
+
+      ws.onmessage = function (message) {
+        document.getElementById("message").innerHTML = message.data;
+        console.log(new Date(), message.data);
+      };
+  }
+</script>
+  </html>
